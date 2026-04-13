@@ -3,7 +3,7 @@
 ## 1. Project Setup
 Created Flask project
 Installed dependencies
-       -- pip install flask sqlalchemy psycopg2-binary python-dotenv alembic gunicorn
+   -- pip install flask sqlalchemy psycopg2-binary python-dotenv alembic gunicorn
 
 ## 2. Virtual Environment Setup
    -- python -m venv venv
