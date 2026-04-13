@@ -1,4 +1,4 @@
-# 🚀 Flask + Supabase + Docker + Alembic Setup (Full Guide)
+# 🚀 Flask + Supabase + Gunicorn + Docker + Alembic Setup 
 
 ## 1. Project Setup
 Created Flask project
