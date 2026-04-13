@@ -1,4 +1,4 @@
-#### 🚀 Flask + Supabase + Docker + Alembic Setup (Full Guide)
+# 🚀 Flask + Supabase + Docker + Alembic Setup (Full Guide)
 
 ## 1. Project Setup
 Created Flask project
@@ -17,7 +17,7 @@ Created .env file:
 
    -- DATABASE_URL=postgresql://username:password@host:5432/postgres
 
-# ❌ ERROR 1: Supabase host name resolution issue
+### ❌ ERROR 1: Supabase host name resolution issue
 Problem
 could not translate host name ...
 Cause :
@@ -50,7 +50,7 @@ COPY . .
 
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
 
-# ❌ ERROR 2: Port mismatch in Docker
+### ❌ ERROR 2: Port mismatch in Docker
 Problem :
 
 App not accessible using wrong port mapping
@@ -61,7 +61,7 @@ Correct usage:
 
   -- docker run -p 5000:5000 testapp
 
-# ❌ ERROR 3: Wrong URL used in browser
+### ❌ ERROR 3: Wrong URL used in browser
 Problem
 Trying:
 
@@ -82,7 +82,7 @@ Install Alembic
 Initialize
   -- alembic init migrations
 
-# ❌ ERROR 4: Interpolation error in DATABASE_URL
+### ❌ ERROR 4: Interpolation error in DATABASE_URL
 Problem
 invalid interpolation syntax %
 Fix
@@ -103,7 +103,7 @@ target_metadata = Base.metadata
 ## 10. Apply Migration to Database
   -- alembic upgrade head
 
-# Architecture for Database
+### Architecture for Database
   Flask App
      ↓
 SQLAlchemy ORM
