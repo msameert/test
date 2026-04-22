@@ -3,5 +3,22 @@
 {%block body%}
 
 <h1>Hello from dashboard</h1>
+<form id="auth-form" action="{{ url_for('api.create_students') }}" method="post">
+ <input name="username" placeholder="username">
+  <input name="password" placeholder="password">
+
+  <input name="firstname" placeholder="firstname">
+  <input name="lastname" placeholder="lastname">
+  <input name="email" placeholder="email">
+  <input name="enroll_year" placeholder="year">
+  <input name="cnic" placeholder="cnic">
+  <input name="gender" placeholder="gender">
+  
+
+
+  <button type="submit">Create Student</button>
+
+
+</form>
 
 {%endblock%}

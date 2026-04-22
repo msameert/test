@@ -7,9 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 from db import db
 from backend.models.user import User
 
+
 load_dotenv()
 
 app = Flask(__name__)
+
+from backend.api.restapi import api
+app.register_blueprint(api, url_prefix='/api')
 
 app.secret_key = os.getenv('SECRET_KEY', 'secret123')
 
