@@ -6,6 +6,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from db import db
 from backend.models.user import User
+from backend.models.student import Student
 
 
 load_dotenv()
@@ -26,8 +27,6 @@ db.init_app(app)
 
 @app.route("/")
 def home () :
-  if "username" in session :
-    return redirect(url_for("dashboard"))
   return render_template("signin.html")
   
 # Login
@@ -37,11 +36,18 @@ def login() :
       username = request.form['username']
       password = request.form['password']
       user = User.query.filter_by(username=username).first()
+
       if user and user.check_password(password):
-          session['username'] = username 
-          return redirect(url_for("dashboard"))
-      else :
-          return render_template("signin.html")
+
+        session["user_id"] = user.id
+        session["username"] = user.username
+        session["role"] = user.role
+
+        if user.role == "admin":
+            return redirect(url_for("dashboard"))
+
+        elif user.role == "student":
+            return redirect(url_for("student_dashboard"))
       
 
 # Register
@@ -68,14 +74,34 @@ def logout():
       
 @app.route("/dashboard")
 def dashboard():
-    if "username" in session:
-        return render_template("dashboard.html", username=session['username'])
+    role = session.get("role")
+
+    if role == "admin":
+        return redirect(url_for("dashboard"))
+
+    elif role == "student":
+        return redirect(url_for("student_dashboard"))
+
     return redirect(url_for("home"))
 
 @app.route("/test")
 def test() :
   return render_template("home.html", message="Supabase connected successfully")
 
+@app.route("/admin/dashboard")
+def admin_dashboard():
+    if session.get("role") != "admin":
+        return "Unauthorized", 403
+    return render_template("dashboard.html")
+
+@app.route("/student/dashboard")
+def student_dashboard():
+    if session.get("role") != "student":
+        return "Unauthorized", 403
+    
+    student = Student.query.filter_by(user_id=session["user_id"]).first()
+
+    return render_template("studentdashboard.html", firstname=student.firstname)
 
 if __name__ == "__main__" :
   app.run(debug=True)
