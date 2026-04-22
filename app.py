@@ -44,7 +44,7 @@ def login() :
         session["role"] = user.role
 
         if user.role == "admin":
-            return redirect(url_for("dashboard"))
+            return redirect(url_for("admin_dashboard"))
 
         elif user.role == "student":
             return redirect(url_for("student_dashboard"))
@@ -74,10 +74,11 @@ def logout():
       
 @app.route("/dashboard")
 def dashboard():
+
     role = session.get("role")
 
     if role == "admin":
-        return redirect(url_for("dashboard"))
+        return redirect(url_for("admin_dashboard"))
 
     elif role == "student":
         return redirect(url_for("student_dashboard"))
