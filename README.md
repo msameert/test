@@ -112,8 +112,47 @@ Alembic Migrations
    ↓
 Supabase PostgreSQL 
 
+## 11. Role-Based Authentication 
+Implemented login system 
+Stored user information in session:
+  --  user_id
+  --  username
+  --  role
+### Redirect users based on role after login:
+   Admin → /admin/dashboard
+   Student → /student/dashboard
+   ---  session["user_id"] = user.id
+   ---  session["username"] = user.username
+   ---  session["role"] = user.role
 
+## Separate Dashboards by Role
+Admin dashboard
+  --  /admin/dashboard
+Student dashboard
+  --  /student/dashboard
 
+### Each route checks role before allowing access:
+
+if session.get("role") != "admin":
+    return redirect(url_for("home"))
+
+## ❌ Error 5 : Role Based Redirect Loop
+
+ERR_TOO_MANY_REDIRECTS
+
+Cause:
+
+/dashboard → /dashboard → infinite loop
+
+Wrong:
+
+  --  return redirect(url_for("dashboard"))
+
+Fix:
+Redirect directly to role dashboards:
+
+admin → /admin/dashboard
+student → /student/dashboard
 
 
 
