@@ -10,6 +10,7 @@ from app import db
 
 from backend.models.user import User
 from backend.models.student import Student
+from backend.models.faculty import Faculty
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
