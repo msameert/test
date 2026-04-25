@@ -21,4 +21,21 @@
 
 </form>
 
+<form id="auth-form" action="{{ url_for('api.create_faculty') }}" method="post">
+ <input name="username" placeholder="username">
+  <input name="password" placeholder="password">
+
+  <input name="name" placeholder="name">
+  <input name="email" placeholder="email">
+  <input name="course_name" placeholder="Course">
+  <input name="department" placeholder="department">
+  <input name="designation" placeholder="designation">
+  
+
+
+  <button type="submit">Create Faculty</button>
+
+
+</form>
+
 {%endblock%}

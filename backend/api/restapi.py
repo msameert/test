@@ -3,6 +3,7 @@ from datetime import datetime
 from db import db
 from backend.models.user import User
 from backend.models.student import Student
+from backend.models.faculty import Faculty
 
 
 
@@ -34,3 +35,30 @@ def create_students():
   db.session.add(new_student)
   db.session.commit()
   return {"message": "Student created successfully"}, 201
+
+@api.route('/admin/create_faculty', methods=['POST'])
+
+def create_faculty():
+  username = request.form["username"]
+  password = request.form["password"]
+
+  name = request.form["name"]
+  email = request.form["email"]
+  course_name = request.form["course_name"]
+  department = request.form["department"]
+  designation = request.form["designation"]
+  
+  new_user = User(username=username, role="faculty")
+  new_user.set_password(password)
+
+  db.session.add(new_user)
+  db.session.flush()
+
+  new_faculty = Faculty(name=name,email=email,course_name=course_name,
+                        department=department,designation=designation,user_id=new_user.id)
+  
+  db.session.add(new_faculty)
+  db.session.commit()
+  return {"message": "Faculty created successfully"}, 201
+
+
