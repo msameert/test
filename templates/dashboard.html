@@ -2,40 +2,40 @@
 
 {%block body%}
 
-<h1>Hello from admin dashboard</h1>
-<form id="auth-form" action="{{ url_for('api.create_students') }}" method="post">
- <input name="username" placeholder="username">
-  <input name="password" placeholder="password">
+<div class="dashboard">
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <p>Create Student</p>
+        <p>Create Faculty</p>
+    </div>
+    <div class="main-content">
+        <h1>Admin Dashboard</h1>
 
-  <input name="firstname" placeholder="firstname">
-  <input name="lastname" placeholder="lastname">
-  <input name="email" placeholder="email">
-  <input name="enroll_year" placeholder="year">
-  <input name="cnic" placeholder="cnic">
-  <input name="gender" placeholder="gender">
-  
+        <h2 id="student-form">Create Student</h2>
+        <form action="{{ url_for('api.create_students') }}" method="post">
+            <input name="username" placeholder="username">
+            <input name="password" placeholder="password">
+            <input name="firstname" placeholder="firstname">
+            <input name="lastname" placeholder="lastname">
+            <input name="email" placeholder="email">
+            <input name="enroll_year" placeholder="year">
+            <input name="cnic" placeholder="cnic">
+            <input name="gender" placeholder="gender">
+            <button type="submit">Create Student</button>
+        </form>
 
-
-  <button type="submit">Create Student</button>
-
-
-</form>
-
-<form id="auth-form" action="{{ url_for('api.create_faculty') }}" method="post">
- <input name="username" placeholder="username">
-  <input name="password" placeholder="password">
-
-  <input name="name" placeholder="name">
-  <input name="email" placeholder="email">
-  <input name="course_name" placeholder="Course">
-  <input name="department" placeholder="department">
-  <input name="designation" placeholder="designation">
-  
-
-
-  <button type="submit">Create Faculty</button>
-
-
-</form>
+        <h2 id="faculty-form">Create Faculty</h2>
+        <form action="{{ url_for('api.create_faculty') }}" method="post">
+            <input name="username" placeholder="username">
+            <input name="password" placeholder="password">
+            <input name="name" placeholder="name">
+            <input name="email" placeholder="email">
+            <input name="course_name" placeholder="Course">
+            <input name="department" placeholder="department">
+            <input name="designation" placeholder="designation">
+            <button type="submit">Create Faculty</button>
+        </form>
+    </div>
+</div>
 
 {%endblock%}
