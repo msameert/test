@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from db import db
 from backend.models.user import User
 from backend.models.student import Student
+from backend.models.faculty import Faculty
 
 
 load_dotenv()
@@ -48,6 +49,9 @@ def login() :
 
         elif user.role == "student":
             return redirect(url_for("student_dashboard"))
+        
+        elif user.role == "faculty":
+            return redirect(url_for("faculty_dashboard"))
       
 
 # Register
@@ -82,6 +86,9 @@ def dashboard():
 
     elif role == "student":
         return redirect(url_for("student_dashboard"))
+    
+    elif role == "faculty":
+            return redirect(url_for("faculty_dashboard"))
 
     return redirect(url_for("home"))
 
@@ -103,6 +110,15 @@ def student_dashboard():
     student = Student.query.filter_by(user_id=session["user_id"]).first()
 
     return render_template("studentdashboard.html", firstname=student.firstname)
+
+@app.route("/faculty/dashboard")
+def faculty_dashboard():
+    if session.get("role") != "faculty":
+        return "Unauthorized", 403
+    
+    faculty = Faculty.query.filter_by(user_id=session["user_id"]).first()
+
+    return render_template("facultydashboard.html", name=faculty.name)
 
 if __name__ == "__main__" :
   app.run(debug=True)
