@@ -11,6 +11,13 @@ from app import db
 from backend.models.user import User
 from backend.models.student import Student
 from backend.models.faculty import Faculty
+from backend.models.departments import Department
+from backend.models.semester import Semester
+from backend.models.courses import Course
+from backend.models.studentcourses import StudentCourse
+from backend.models.enrollment import Enrollment
+from backend.models.semestercourses import SemesterCourse
+from backend.models.facultycourses import FacultyCourse
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

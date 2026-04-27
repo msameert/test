@@ -14,4 +14,8 @@ class Student(db.Model):
     cnic = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    department_id = db.Column(db.Integer,db.ForeignKey("departments.id"),nullable=False)
+
     user = db.relationship("User", backref="student")
+
+
