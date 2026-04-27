@@ -1,4 +1,4 @@
-# 🚀 Flask + Supabase + Gunicorn + Docker + Alembic Setup 
+# 🚀 Flask + Supabase + Gunicorn + Docker + Alembic + Vercel Setup 
 
 ## 1. Project Setup
 Created Flask project
@@ -154,6 +154,43 @@ Redirect directly to role dashboards:
 admin → /admin/dashboard
 student → /student/dashboard
 
+## 12. Deployment on Vercel
+
+Created a clean requirements.txt with required dependencies:
+
+Flask
+Flask-SQLAlchemy
+SQLAlchemy
+Jinja2
+Werkzeug
+psycopg2-binary
+python-dotenv
+requests
+PyJWT
+gunicorn
+alembic
+
+## Error 6 : Issue encountered
+
+Vercel build failed with:
+
+Failed to parse requirements.txt
+Unexpected '�'
+Cause
+
+The file was saved in UTF-16 LE encoding with hidden BOM characters.
+
+Fix
+
+Converted file encoding to UTF-8 in VS Code:
+
+Bottom right → UTF-16 LE → Save with Encoding → UTF-8
+
+After conversion, redeployed successfully.
+
+## Live URL :
+
+### https://test-beige-gamma-14.vercel.app/
 
 
 
