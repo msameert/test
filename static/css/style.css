@@ -49,6 +49,11 @@ body {
     font-size: 1.8rem;
 }
 
+.login-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
 .login-card form {
     display: flex;
     flex-direction: column;
