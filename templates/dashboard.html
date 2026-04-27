@@ -2,40 +2,76 @@
 
 {%block body%}
 
-<div class="dashboard">
-    <div class="sidebar">
-        <h2>Admin Dashboard</h2>
-        <p>Create Student</p>
-        <p>Create Faculty</p>
-    </div>
-    <div class="main-content">
+<section class="panel">
+    <div class="panel-header">
         <h1>Admin Dashboard</h1>
-
-        <h2 id="student-form">Create Student</h2>
-        <form action="{{ url_for('api.create_students') }}" method="post">
-            <input name="username" placeholder="username">
-            <input name="password" placeholder="password">
-            <input name="firstname" placeholder="firstname">
-            <input name="lastname" placeholder="lastname">
-            <input name="email" placeholder="email">
-            <input name="enroll_year" placeholder="year">
-            <input name="cnic" placeholder="cnic">
-            <input name="gender" placeholder="gender">
-            <button type="submit">Create Student</button>
-        </form>
-
-        <h2 id="faculty-form">Create Faculty</h2>
-        <form action="{{ url_for('api.create_faculty') }}" method="post">
-            <input name="username" placeholder="username">
-            <input name="password" placeholder="password">
-            <input name="name" placeholder="name">
-            <input name="email" placeholder="email">
-            <input name="course_name" placeholder="Course">
-            <input name="department" placeholder="department">
-            <input name="designation" placeholder="designation">
-            <button type="submit">Create Faculty</button>
-        </form>
+        <p>Welcome to the LMS admin panel. Create new student and faculty accounts from this centralized dashboard.</p>
     </div>
-</div>
+
+    <div class="form-grid">
+        <div class="form-card">
+            <h2>Create Student</h2>
+            <form action="{{ url_for('api.create_students') }}" method="post">
+                <div class="form-grid-two">
+                    <div class="form-group">
+                        <input name="username" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <input name="firstname" placeholder="firstname">
+                    </div>
+                    <div class="form-group">
+                        <input name="lastname" placeholder="lastname">
+                    </div>
+                    <div class="form-group">
+                        <input name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <input name="enroll_year" placeholder="year">
+                    </div>
+                    <div class="form-group">
+                        <input name="cnic" placeholder="cnic">
+                    </div>
+                    <div class="form-group">
+                        <input name="gender" placeholder="gender">
+                    </div>
+                </div>
+                <button type="submit" class="button">Create Student</button>
+            </form>
+        </div>
+
+        <div class="form-card">
+            <h2>Create Faculty</h2>
+            <form action="{{ url_for('api.create_faculty') }}" method="post">
+                <div class="form-grid-two">
+                    <div class="form-group">
+                        <input name="username" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <input name="name" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <input name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <input name="course_name" placeholder="Course">
+                    </div>
+                    <div class="form-group">
+                        <input name="department" placeholder="department">
+                    </div>
+                    <div class="form-group">
+                        <input name="designation" placeholder="designation">
+                    </div>
+                </div>
+                <button type="submit" class="button">Create Faculty</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 {%endblock%}

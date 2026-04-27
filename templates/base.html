@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>LMS Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header>
-        <h1>LMS System</h1>
+        <div class="header-nav">
+            <div class="brand">
+                <span class="app-title">LMS Admin</span>
+            </div>
+            <div class="nav-right">
+                <span class="username">Logged in as {{ session.get('username', 'Guest') }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+            </div>
+        </div>
     </header>
 
-    {% block body %}
-
-    {% endblock %}
+    <main>
+        <div class="page-wrapper">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
 
     <footer>
-        <p>&copy; 2026 LMS</p>
+        © LMS 2026
     </footer>
 </body>
 </html>
