@@ -95,6 +95,23 @@
                 </div>
             </form>
         </div>
+
+        <div class="form-card">
+            <h2>Create Course</h2>
+            <form action="{{ url_for('api.create_course') }}" method="post">
+                <div class="form-grid-two">
+                    <div class="form-group">
+                        <input name="course_code" placeholder="Course Code">
+                    </div>
+                    <div class="form-group">
+                        <input name="course_name" placeholder="Course name">
+                    </div>
+                </div>
+                <div class="center-btn">
+                     <button type="submit" class="button">Create Course</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 

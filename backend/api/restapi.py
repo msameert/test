@@ -5,7 +5,7 @@ from backend.models.user import User
 from backend.models.student import Student
 from backend.models.faculty import Faculty
 from backend.models.departments import Department
-
+from backend.models.courses import Course
 
 
 api = Blueprint('api',__name__)
@@ -74,3 +74,12 @@ def create_department() :
   db.session.commit()
   return {"message": "Department created succesfuly"}, 201
 
+@api.route('/admin/create_course', methods=["POST"])
+def create_course() :
+  course_name = request.form["course_name"]
+  course_code = request.form["course_code"]
+
+  new_course = Course(course_name=course_name, course_code=course_code)
+  db.session.add(new_course)
+  db.session.commit()
+  return {"message": "Course created succesfuly"}, 201
