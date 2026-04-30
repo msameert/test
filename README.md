@@ -190,7 +190,7 @@ After conversion, redeployed successfully.
 
 ## Live URL :
 
-### https://test-beige-gamma-14.vercel.app/
+### https://lms-system-dev.vercel.app/
 
 
 
