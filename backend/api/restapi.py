@@ -79,8 +79,9 @@ def create_course() :
   course_name = request.form["course_name"]
   course_code = request.form["course_code"]
   credit_hours = request.form["credit_hours"]
+  department_id = request.form["department_id"]
 
-  new_course = Course(course_name=course_name, course_code=course_code, credit_hours = credit_hours)
+  new_course = Course(course_name=course_name, course_code=course_code, credit_hours = credit_hours, department_id = depaertment_id)
   db.session.add(new_course)
   db.session.commit()
   return {"message": "Course created succesfuly"}, 201
