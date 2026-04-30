@@ -4,6 +4,7 @@ from db import db
 from backend.models.user import User
 from backend.models.student import Student
 from backend.models.faculty import Faculty
+from backend.models.departments import Department
 
 
 
@@ -61,4 +62,14 @@ def create_faculty():
   db.session.commit()
   return {"message": "Faculty created successfully"}, 201
 
+
+@api.route('/admin/create_department', methods=["POST"])
+def create_department() :
+  name = request.form["name"]
+  code = request.form["code"]
+
+  new_department = Department(name=name, code=code)
+  db.session.add(new_department)
+  db.session.commit()
+  return {"message": "Department created succesfuly"}, 201
 
