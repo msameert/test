@@ -7,6 +7,7 @@ class Faculty(db.Model):
     name = db.Column(db.Text,nullable=False)
     email = db.Column(db.Text,nullable=True)
     course_name = db.Column(db.String(70), nullable=False)
+    course_name2 = db.Column(db.String(70), nullable=True)
     department = db.Column(db.String(100))
     designation = db.Column(db.String(100), nullable=True)
     
