@@ -8,6 +8,9 @@ from db import db
 from backend.models.user import User
 from backend.models.student import Student
 from backend.models.faculty import Faculty
+from backend.models.departments import Department
+from backend.models.courses import Course
+from backend.models.semester import Semester
 
 
 load_dotenv()
