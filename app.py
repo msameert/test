@@ -11,6 +11,7 @@ from backend.models.faculty import Faculty
 from backend.models.departments import Department
 from backend.models.courses import Course
 from backend.models.semester import Semester
+from backend.models.facultycourses import FacultyCourse
 
 
 load_dotenv()
