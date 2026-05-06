@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, redirect, url_for
 from datetime import datetime
 from db import db
 from backend.models.user import User
@@ -6,6 +6,8 @@ from backend.models.student import Student
 from backend.models.faculty import Faculty
 from backend.models.departments import Department
 from backend.models.courses import Course
+from backend.models.facultycourses import FacultyCourse
+from backend.models.semester import Semester
 
 
 api = Blueprint('api',__name__)
@@ -83,3 +85,39 @@ def create_course() :
   db.session.add(new_course)
   db.session.commit()
   return {"message": "Course created succesfuly"}, 201
+
+@api.route('/admin/create_semester', methods=["POST"])
+def create_semester() :
+  name = request.form["name"]
+  code = request.form.get("code")
+  year = request.form.get("year")
+  number = request.form.get("number")
+  type = request.form.get("type")
+
+  new_semester = Semester(name=name, code=code, year=year, semester_number=number, semester_type=type )
+  db.session.add(new_semester) 
+  db.session.commit()
+  return {"message": "Semester created succesfuly"}, 201
+
+@api.route("/admin/assign-faculty-courses", methods=["POST"])
+def assign_faculty_courses():
+
+    faculty_id = request.form.getlist("faculty_id")
+    course_ids = request.form.getlist("course_ids")
+    semester_ids = request.form.getlist("semester_ids")
+
+    if not faculty_id or not course_ids or not semester_ids:
+        return "Please select a faculty and at least one course.", 400
+
+    # Add new assignments
+    for course_id in course_ids:
+        fc = FacultyCourse(
+            faculty_id=faculty_id,
+            course_id=course_id,
+            semester_ids=semester_ids
+        )
+        db.session.add(fc)
+
+    db.session.commit()
+
+    return redirect(url_for("admin_dashboard"))

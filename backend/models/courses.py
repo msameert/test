@@ -9,3 +9,5 @@ class Course(db.Model):
     credit_hours = db.Column(db.Integer, nullable=False)
 
     department_id = db.Column(db.Integer,db.ForeignKey("departments.id"),nullable=False)
+
+    faculties = db.relationship("FacultyCourse", back_populates="course")
