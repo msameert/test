@@ -45,8 +45,6 @@ def create_faculty():
 
   name = request.form["name"]
   email = request.form["email"]
-  course_name = request.form["course_name"]
-  course_name2 = request.form.get["course_name2"]
   department = request.form["department"]
   designation = request.form["designation"]
   
@@ -56,7 +54,7 @@ def create_faculty():
   db.session.add(new_user)
   db.session.flush()
 
-  new_faculty = Faculty(name=name,email=email,course_name=course_name,course_name2=course_name2,
+  new_faculty = Faculty(name=name,email=email,
                         department=department,designation=designation,user_id=new_user.id)
   
   db.session.add(new_faculty)
