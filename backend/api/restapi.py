@@ -104,9 +104,9 @@ def assign_faculty_courses():
 
     faculty_id = request.form.getlist("faculty_id")
     course_ids = request.form.getlist("course_ids")
-    semester_ids = request.form.getlist("semester_ids")
+    semester_id = request.form.getlist("semester_id")
 
-    if not faculty_id or not course_ids or not semester_ids:
+    if not faculty_id or not course_ids or not semester_id:
         return "Please select a faculty and at least one course.", 400
 
     # Add new assignments
@@ -114,7 +114,7 @@ def assign_faculty_courses():
         fc = FacultyCourse(
             faculty_id=faculty_id,
             course_id=course_id,
-            semester_ids=semester_ids
+            semester_id=semester_id
         )
         db.session.add(fc)
 
