@@ -170,13 +170,14 @@
          <!-- Courses Multi Select -->
          <div class="form-group">
             <label>Select Courses</label>
-            <select name="course_ids" multiple required>
+            <div class="course-selection">
                 {% for course in courses %}
-                    <option value="{{ course.id }}">
-                        {{ course.course_name }}
-                    </option>
+                <div class="course-card">
+                    <input type="checkbox" id="course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
+                    <label for="course-{{ course.id }}">{{ course.course_name }}</label>
+                </div>
                 {% endfor %}
-            </select>
+            </div>
          </div>
 
               <div class="center-btn">
