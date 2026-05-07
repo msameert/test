@@ -99,7 +99,7 @@ def create_semester() :
   db.session.commit()
   return {"message": "Semester created succesfuly"}, 201
 
-@api.route("/admin/assign-faculty-courses", methods=["POST"])
+@api.route("/admin/assign_faculty_courses", methods=["POST"])
 def assign_faculty_courses():
 
     faculty_id = request.form.getlist("faculty_id")
