@@ -160,7 +160,7 @@
                 <label>Select Semester</label>
                  <select name="semester_id" required>
                    {% for semester in semesters %}
-                    <option value="{{ faculty.id }}">
+                    <option value="{{ semester.id }}">
                         {{ semester.name }}
                     </option>
                    {% endfor %}
