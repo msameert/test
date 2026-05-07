@@ -102,9 +102,9 @@ def create_semester() :
 @api.route("/admin/assign_faculty_courses", methods=["POST"])
 def assign_faculty_courses():
 
-    faculty_id = request.form.getlist("faculty_id")
+    faculty_id = int(request.form.get("faculty_id"))
     course_ids = request.form.getlist("course_ids")
-    semester_id = request.form.getlist("semester_id")
+    semester_id = int(request.form.get("semester_id"))
 
     if not faculty_id or not course_ids or not semester_id:
         return "Please select a faculty and at least one course.", 400
