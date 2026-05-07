@@ -384,3 +384,158 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Faculty Selection Styles */
+.faculty-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.faculty-card {
+    position: relative;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.faculty-card:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    transform: translateY(-1px);
+}
+
+.faculty-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.faculty-card label {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.faculty-card label::before {
+    content: '';
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    background: white;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.faculty-card input[type="radio"]:checked + label::before {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    box-shadow: inset 0 0 0 4px white;
+}
+
+.faculty-card input[type="radio"]:checked + label {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.faculty-card input[type="radio"]:focus + label::before {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Semester Selection Styles */
+.semester-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.semester-card {
+    position: relative;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.semester-card:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    transform: translateY(-1px);
+}
+
+.semester-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.semester-card label {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.semester-card label::before {
+    content: '';
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    background: white;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.semester-card input[type="radio"]:checked + label::before {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    box-shadow: inset 0 0 0 4px white;
+}
+
+.semester-card input[type="radio"]:checked + label {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.semester-card input[type="radio"]:focus + label::before {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 768px) {
+    .faculty-selection,
+    .semester-selection {
+        grid-template-columns: 1fr;
+    }
+}

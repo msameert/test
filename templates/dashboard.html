@@ -143,28 +143,30 @@
 
             <form action="{{ url_for('api.assign_faculty_courses') }}" method="POST">
 
-             <!-- Faculty Dropdown -->
+             <!-- Faculty Selection -->
              <div class="form-group">
                 <label>Select Faculty</label>
-                 <select name="faculty_id" required>
+                <div class="faculty-selection">
                    {% for faculty in faculties %}
-                    <option value="{{ faculty.id }}">
-                        {{ faculty.name }}
-                    </option>
+                   <div class="faculty-card">
+                       <input type="radio" id="faculty-{{ faculty.id }}" name="faculty_id" value="{{ faculty.id }}" required>
+                       <label for="faculty-{{ faculty.id }}">{{ faculty.name }}</label>
+                   </div>
                    {% endfor %}
-                  </select>
+                </div>
              </div>
 
-              <!-- Faculty Dropdown -->
+              <!-- Semester Selection -->
              <div class="form-group">
                 <label>Select Semester</label>
-                 <select name="semester_id" required>
+                <div class="semester-selection">
                    {% for semester in semesters %}
-                    <option value="{{ semester.id }}">
-                        {{ semester.name }}
-                    </option>
+                   <div class="semester-card">
+                       <input type="radio" id="semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
+                       <label for="semester-{{ semester.id }}">{{ semester.name }}</label>
+                   </div>
                    {% endfor %}
-                  </select>
+                </div>
              </div>
 
          <!-- Courses Multi Select -->
