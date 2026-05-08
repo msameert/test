@@ -108,8 +108,9 @@ def admin_dashboard():
     faculties = Faculty.query.all()
     courses = Course.query.all()
     semesters = Semester.query.all()
+    students = Student.query.all()
 
-    return render_template("dashboard.html", faculties=faculties, courses=courses, semesters=semesters)
+    return render_template("dashboard.html", faculties=faculties, courses=courses, semesters=semesters, students=students)
 
 @app.route("/student/dashboard")
 def student_dashboard():
