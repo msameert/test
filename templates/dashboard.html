@@ -203,7 +203,7 @@
                    {% for student in students %}
                    <div class="faculty-card">
                        <input type="radio" id="student-{{ student.id }}" name="student_id" value="{{ student.id }}" required>
-                       <label for="student-{{ student.id }}">{{ student.name }}</label>
+                       <label for="student-{{ student.id }}">{{ student.firstname }} {{ student.lastname }}</label>
                    </div>
                    {% endfor %}
                 </div>
