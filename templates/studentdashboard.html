@@ -7,6 +7,18 @@
         <h1>Welcome, {{ firstname }}!</h1>
         <p>Your student dashboard is ready. Review your courses and academic details in one place.</p>
     </div>
+    <div class="panel-header">
+        <h2>My Courses</h2>
+
+        {% for sc in student_courses %}
+        <div class="course-card">
+            <h3>{{ sc.course.course_name }}</h3>
+            <p>Class: {{ sc.semester.name }}</p>
+        </div>
+        {% endfor %}
+       
+
+    </div>
 </section>
 
 {%endblock%}
