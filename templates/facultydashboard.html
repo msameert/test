@@ -7,6 +7,18 @@
         <h1>Welcome, Sir {{ name }}!</h1>
         <p>Your faculty dashboard is prepared for course management and student support.</p>
     </div>
+    <div class="panel-header">
+        <h2>My Courses</h2>
+
+        {% for fc in faculty_courses %}
+        <div class="course-card">
+            <h3>{{ fc.course.name }}</h3>
+            <p>Semester: {{ fc.semester.name }}</p>
+        </div>
+        {% endfor %}
+       
+
+    </div>
 </section>
 
 {%endblock%}

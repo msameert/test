@@ -127,7 +127,9 @@ def faculty_dashboard():
     
     faculty = Faculty.query.filter_by(user_id=session["user_id"]).first()
 
-    return render_template("facultydashboard.html", name=faculty.name)
+    faculty_courses = FacultyCourse.query.filter_by(faculty_id=faculty.id).all()
+
+    return render_template("facultydashboard.html", name=faculty.name, faculty_courses=faculty_courses)
 
 if __name__ == "__main__" :
   app.run(debug=True)
