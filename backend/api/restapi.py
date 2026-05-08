@@ -8,6 +8,7 @@ from backend.models.departments import Department
 from backend.models.courses import Course
 from backend.models.facultycourses import FacultyCourse
 from backend.models.semester import Semester
+from backend.models.studentcourses import StudentCourse
 
 
 api = Blueprint('api',__name__)
@@ -117,6 +118,29 @@ def assign_faculty_courses():
             semester_id=semester_id
         )
         db.session.add(fc)
+
+    db.session.commit()
+
+    return redirect(url_for("admin_dashboard"))
+
+@api.route("/admin/assign_student_courses", methods=["POST"])
+def assign_student_courses():
+
+    student_id = int(request.form.get("student_id"))
+    course_ids = request.form.getlist("course_ids")
+    semester_id = int(request.form.get("semester_id"))
+
+    if not student_id or not course_ids or not semester_id:
+        return "Please select a student and at least one course.", 400
+
+    # Add new assignments
+    for course_id in course_ids:
+        sc = StudentCourse(
+            student_id=student_id,
+            course_id=course_id,
+            semester_id=semester_id
+        )
+        db.session.add(sc)
 
     db.session.commit()
 

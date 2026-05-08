@@ -190,6 +190,59 @@
 
              </form>
            </div>
+
+            <div class="form-card">
+          <h2>Assign Courses to Students</h2>
+
+            <form action="{{ url_for('api.assign_student_courses') }}" method="POST">
+
+             <!-- Student Selection -->
+             <div class="form-group">
+                <label>Select Student</label>
+                <div class="faculty-selection">
+                   {% for student in students %}
+                   <div class="faculty-card">
+                       <input type="radio" id="student-{{ student.id }}" name="student_id" value="{{ student.id }}" required>
+                       <label for="student-{{ student.id }}">{{ student.name }}</label>
+                   </div>
+                   {% endfor %}
+                </div>
+             </div>
+
+              <!-- Semester Selection -->
+             <div class="form-group">
+                <label>Select Semester</label>
+                <div class="semester-selection">
+                   {% for semester in semesters %}
+                   <div class="semester-card">
+                       <input type="radio" id="semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
+                       <label for="semester-{{ semester.id }}">{{ semester.name }}</label>
+                   </div>
+                   {% endfor %}
+                </div>
+             </div>
+
+         <!-- Courses Multi Select -->
+         <div class="form-group">
+            <label>Select Courses</label>
+            <div class="course-selection">
+                {% for course in courses %}
+                <div class="course-card">
+                    <input type="checkbox" id="course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
+                    <label for="course-{{ course.id }}">{{ course.course_name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+         </div>
+
+              <div class="center-btn">
+                <button type="submit" class="button">
+                    Assign Courses to Students
+                </button>
+              </div>
+
+             </form>
+           </div>
         </div>
 </section>
 
