@@ -12,6 +12,7 @@ from backend.models.departments import Department
 from backend.models.courses import Course
 from backend.models.semester import Semester
 from backend.models.facultycourses import FacultyCourse
+from backend.models.studentcourses import StudentCourse
 
 
 load_dotenv()
@@ -119,7 +120,9 @@ def student_dashboard():
     
     student = Student.query.filter_by(user_id=session["user_id"]).first()
 
-    return render_template("studentdashboard.html", firstname=student.firstname)
+    student_courses = StudentCourse.query.filter_by(student_id=student.id).all()
+
+    return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses)
 
 @app.route("/faculty/dashboard")
 def faculty_dashboard():
