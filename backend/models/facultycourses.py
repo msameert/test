@@ -24,5 +24,5 @@ class FacultyCourse(db.Model):
     )
 
     faculty = db.relationship("Faculty", backref="faculty_courses")
-    course = db.relationship("Course", backref="faculty_courses")
+    course = db.relationship("Courses", backref="faculty_courses")
     semester = db.relationship("Semester", backref="faculty_courses")
