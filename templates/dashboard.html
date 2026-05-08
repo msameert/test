@@ -162,7 +162,7 @@
                 <div class="semester-selection">
                    {% for semester in semesters %}
                    <div class="semester-card">
-                       <input type="radio" id="semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
+                       <input type="radio" id="faculty_semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
                        <label for="semester-{{ semester.id }}">{{ semester.name }}</label>
                    </div>
                    {% endfor %}
@@ -175,7 +175,7 @@
             <div class="course-selection">
                 {% for course in courses %}
                 <div class="course-card">
-                    <input type="checkbox" id="course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
+                    <input type="checkbox" id="faculty_course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
                     <label for="course-{{ course.id }}">{{ course.course_name }}</label>
                 </div>
                 {% endfor %}
