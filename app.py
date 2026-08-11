@@ -122,7 +122,9 @@ def student_dashboard():
 
     student_courses = StudentCourse.query.filter_by(student_id=student.id).all()
 
-    return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses)
+    department = Department.query.filter_by(id=student.department_id).first()
+
+    return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses, department=department)
 
 @app.route("/faculty/dashboard")
 def faculty_dashboard():
