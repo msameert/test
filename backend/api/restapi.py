@@ -25,7 +25,7 @@ def create_students():
   enroll_year = request.form["enroll_year"]
   cnic = request.form["cnic"]
   gender = request.form["gender"]
-
+  department_id = request.form["department_id"]
   new_user = User(username=username, role="student")
   new_user.set_password(password)
   
@@ -34,7 +34,7 @@ def create_students():
 
   new_student = Student(firstname=firstname, lastname= lastname,
                         email= email, enroll_year= enroll_year, cnic=cnic,gender=gender,
-                        user_id=new_user.id)
+                        user_id=new_user.id, department_id=department_id)
 
   db.session.add(new_student)
   db.session.commit()
