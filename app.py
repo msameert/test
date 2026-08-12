@@ -125,7 +125,6 @@ def student_dashboard():
     department = Department.query.filter_by(id=student.department_id).first()
 
     return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses, department=department)
-
 @app.route("/faculty/dashboard")
 def faculty_dashboard():
     if session.get("role") != "faculty":
@@ -135,7 +134,16 @@ def faculty_dashboard():
 
     faculty_courses = FacultyCourse.query.filter_by(faculty_id=faculty.id).all()
 
-    return render_template("facultydashboard.html", name=faculty.name, faculty_courses=faculty_courses)
+    course_students = {}
+
+    for fc in faculty_courses:
+        enrollments = StudentCourse.query.filter_by(
+            course_id=fc.course_id,
+            semester_id=fc.semester_id
+        ).all()
+        course_students[fc.id] = enrollments
+
+    return render_template("facultydashboard.html", name=faculty.name, faculty_courses=faculty_courses, course_students=course_students)
 
 if __name__ == "__main__" :
   app.run(debug=True)
