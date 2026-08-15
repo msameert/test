@@ -323,9 +323,13 @@ footer {
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    justify-content: space-between;
 }
 
+.course-card h3, .course-card p {
+    gap: 0.25rem;
+}
 .course-card:hover {
     border-color: var(--secondary);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
@@ -378,6 +382,7 @@ footer {
 .course-card input[type="checkbox"]:focus + label::before {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
+
 
 @media (max-width: 768px) {
     .course-selection {
