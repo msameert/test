@@ -8,7 +8,7 @@ class Studentmark (db.Model) :
     student_id = db.Column(db.Integer, db.ForeignKey("students.id"), nullable=False)
     assessment_id = db.Column(db.Integer, db.ForeignKey("assessments.id"), nullable=False)
 
-    obtained_marks = db.Column(db.Float, nullable=False)
+    obtained_marks = db.Column(db.Float, nullable=True)
 
     student = db.relationship("Student", backref="studentmarks")
     assessment = db.relationship("Assessment", backref="studentmarks")
