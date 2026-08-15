@@ -18,7 +18,7 @@ from backend.models.studentcourses import StudentCourse
 from backend.models.enrollment import Enrollment
 from backend.models.semestercourses import SemesterCourse
 from backend.models.facultycourses import FacultyCourse
-
+from backend.models.assessment import Assessment
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
