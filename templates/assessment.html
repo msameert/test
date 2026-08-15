@@ -2,19 +2,11 @@
 
 {%block body%}
 
-<section class="panel">
-    <div class="panel-header">
-        <h1>Welcome, Sir {{ name }}!</h1>
-        <p>Your faculty dashboard is prepared for course management and student support.</p>
-    </div>
-    <div class="panel-header">
-        <h2>My Courses</h2>
-
-        {% for fc in faculty_courses %}
+ {% for fc in faculty_courses %}
         <div class="course-card">
             <h3>{{ fc.course.course_name }}</h3>
             <p>Class: {{ fc.semester.name }}</p>
-            <a href="{{ url_for('assessment') }}" class="logout-button">Add Assessment</a>
+            
         </div>
 
         <div class="course_students">
@@ -32,7 +24,8 @@
 
         {% endfor %}
 
-    </div>
-</section>
+
+
+
 
 {%endblock%}
