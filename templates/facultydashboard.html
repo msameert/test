@@ -17,20 +17,6 @@
             <a href="{{ url_for('assessment') }}" class="logout-button">Add Assessment</a>
         </div>
 
-        <div class="course_students">
-            <h4>Enrolled Students</h4>
-
-            {% for enrollment in course_students.get(fc.id, []) %}
-               <p>
-                {{ enrollment.student.firstname }}
-                {{ enrollment.student.lastname }}
-               </p>
-            {% else %}
-               <p>No students enrolled.</p>
-            {% endfor %}
-        </div>
-
-        {% endfor %}
 
     </div>
 </section>
