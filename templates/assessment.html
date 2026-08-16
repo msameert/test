@@ -30,9 +30,18 @@
                      <button type="submit" class="button">Create Assessment</button>
         </div>
        </form> 
+
+       {% for assessment in assessments.get(fc.course_id, []) %}
+             <div class="assess-card">
+                <h3>{{ assessment.title }}</h3>
+             </div>
+       {% else %}
+             <p>No assessments for this course.</p>
+       {% endfor %}
+
           <h4>Enrolled Students :</h4>
+
         <div class="course_students">
-            
             {% for enrollment in course_students.get(fc.id, []) %}
                <p>
                 {{ enrollment.student.firstname }}
@@ -50,9 +59,5 @@
         </div>
 
         {% endfor %}
-
-
-
-
 
 {%endblock%}

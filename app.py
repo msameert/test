@@ -13,6 +13,8 @@ from backend.models.courses import Course
 from backend.models.semester import Semester
 from backend.models.facultycourses import FacultyCourse
 from backend.models.studentcourses import StudentCourse
+from backend.models.assessment import Assessment
+from backend.models.studentmarks import Studentmark
 
 
 load_dotenv()
@@ -152,18 +154,30 @@ def assessment():
         return "Unautorized", 403
 
     faculty = Faculty.query.filter_by(user_id=session["user_id"]).first()
-    
+
     faculty_courses = FacultyCourse.query.filter_by(faculty_id=faculty.id).all()
 
     course_students = {}
-    
+    assessments_by_course = {}
+
     for fc in faculty_courses:
-            enrollments = StudentCourse.query.filter_by(
-                course_id=fc.course_id,
-                semester_id=fc.semester_id
-            ).all()
-            course_students[fc.id] = enrollments
-    return render_template("assessment.html", name=faculty.name, faculty_courses=faculty_courses, course_students=course_students)
+        enrollments = StudentCourse.query.filter_by(
+            course_id=fc.course_id,
+            semester_id=fc.semester_id
+        ).all()
+        course_students[fc.id] = enrollments
+
+    assessments = Assessment.query.filter_by(faculty_id=faculty.id).all()
+    for assessment in assessments:
+        assessments_by_course.setdefault(assessment.course_id, []).append(assessment)
+
+    return render_template(
+        "assessment.html",
+        name=faculty.name,
+        faculty_courses=faculty_courses,
+        course_students=course_students,
+        assessments=assessments_by_course
+    )
 
 if __name__ == "__main__" :
   app.run(debug=True)
