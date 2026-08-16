@@ -544,3 +544,10 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.course_students {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
