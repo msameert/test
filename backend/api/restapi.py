@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, redirect, url_for
+from flask import Blueprint, request, jsonify, redirect, url_for, session
 from datetime import datetime
 from db import db
 from backend.models.user import User
@@ -9,6 +9,8 @@ from backend.models.courses import Course
 from backend.models.facultycourses import FacultyCourse
 from backend.models.semester import Semester
 from backend.models.studentcourses import StudentCourse
+from backend.models.assessment import Assessment
+from backend.models.studentmarks import Studentmark
 
 
 api = Blueprint('api',__name__)
@@ -145,3 +147,28 @@ def assign_student_courses():
     db.session.commit()
 
     return redirect(url_for("admin_dashboard"))
+
+@api.route("/assessment/get_assessment", methods=["POST"])
+def get_assessment():
+    assessment_title = request.form.get("title")
+    assessment_marks = request.form.get("marks")
+    course_id = request.form.get("course_id", type=int)
+
+    faculty = Faculty.query.filter_by(user_id=session.get("user_id")).first()
+    if not faculty:
+        return "Unauthorized", 403
+
+    faculty_id = faculty.id
+
+    if not assessment_title or assessment_marks is None or course_id is None:
+        return "Please enter title and marks of assessment.", 400
+
+    new_assessment = Assessment(
+        title=assessment_title,
+        marks=float(assessment_marks),
+        course_id=course_id,
+        faculty_id=faculty_id
+    )
+    db.session.add(new_assessment)
+    db.session.commit()
+    return {"message": "Assessment created successfully"}, 201

@@ -551,3 +551,10 @@ footer {
     gap: 1rem;
     justify-content: space-between;
 }
+
+.title-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}

@@ -8,7 +8,8 @@
             <p>Class: {{ fc.semester.name }}</p>
             
         </div>
-
+       <form action="{{ url_for('api.get_assessment') }}" method="post">
+        <input type="hidden" name="course_id" value="{{ fc.course_id }}">   <!-- this hidden form sends course_id automatically -->
         <div class="title-card">
             <h4>Assessment Title :</h4>
             <p><input
@@ -17,10 +18,20 @@
                 placeholder="title"
                 class="input-field"
             /></p>
+            <h4>Assessment Marks :</h4>
+            <p><input
+                type="text"
+                name="marks"
+                placeholder="total marks"
+                class="input-field"
+            /></p>
         </div>
-
+        <div class="center-btn">
+                     <button type="submit" class="button">Create Assessment</button>
+        </div>
+       </form> 
+          <h4>Enrolled Students :</h4>
         <div class="course_students">
-            <h4>Enrolled Students</h4>
             
             {% for enrollment in course_students.get(fc.id, []) %}
                <p>
@@ -29,7 +40,7 @@
                 <input
                 type="text"
                 name="marks"
-                placeholder="marks"
+                placeholder="obtained marks"
                 class="input-field"
             />
                </p>
