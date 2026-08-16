@@ -9,9 +9,19 @@
             
         </div>
 
+        <div class="title-card">
+            <h4>Assessment Title :</h4>
+            <p><input
+                type="text"
+                name="title"
+                placeholder="title"
+                class="input-field"
+            /></p>
+        </div>
+
         <div class="course_students">
             <h4>Enrolled Students</h4>
-
+            
             {% for enrollment in course_students.get(fc.id, []) %}
                <p>
                 {{ enrollment.student.firstname }}
