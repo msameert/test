@@ -30,15 +30,17 @@
                      <button type="submit" class="button">Create Assessment</button>
         </div>
        </form> 
-
-       {% for assessment in assessments.get(fc.course_id, []) %}
-             <div class="assess-card">
+       <h3>Previous Assessments : </h3>
+        
+         {% for assessment in assessments.get(fc.course_id, []) %}
+        <a href="{{ url_for('assessment_details', assessment_id=assessment.id) }}" class="assess-card">
                 <h3>{{ assessment.title }}</h3>
-             </div>
-       {% else %}
+                <p>Update Marks</p>
+            
+         {% else %}
              <p>No assessments for this course.</p>
-       {% endfor %}
-
+         {% endfor %}
+        </a>
           <h4>Enrolled Students :</h4>
 
         <div class="course_students">

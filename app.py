@@ -179,5 +179,16 @@ def assessment():
         assessments=assessments_by_course
     )
 
+@app.route("/assessment/<int:assessment_id>")
+def assessment_details(assessment_id):
+
+    assessment = Assessment.query.get(assessment_id)
+    marks = Studentmark.query.filter_by(assessment_id=assessment_id).all()
+
+    return render_template("assessmentdetails.html", assessment=assessment, marks=marks)
+
+
+
+
 if __name__ == "__main__" :
   app.run(debug=True)

@@ -558,3 +558,23 @@ footer {
     gap: 1rem;
     justify-content: space-between;
 }
+
+.assess-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.50rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display:flex;
+    align-items: center;
+    gap: 0.25rem;
+    justify-content: space-between;
+}
+
+.assess-card:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    transform: translateY(-1px);
+}
