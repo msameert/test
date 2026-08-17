@@ -2,10 +2,37 @@
 
 {%block body%}
 
+<div class="course-card">
+    <h3>{{ assessment.title }}</h3>
+    <p>Total Marks: {{ assessment.marks }}</p>
+</div>
 
-<p>hello</p>
+<h4>Student Marks :</h4>
 
-
+<form action="{{ url_for('api.get_marks') }}" method="POST">
+    <input type="hidden" name="assessment_id" value="{{ assessment.id }}">
+ <div class="course_students">
+    {% for enrollment in enrolled_students %}
+        <p>
+            <input type="hidden" name="student_id" value="{{ enrollment.student_id }}">
+           <h5> {{ enrollment.student.firstname }}
+            {{ enrollment.student.lastname }} </h5>
+            <input
+                type="text"
+                name="marks"
+                value="{{ marks_dict.get(enrollment.student_id, '') }}"
+                placeholder="obtained marks"
+                class="input-field"
+            />
+        </p>
+    {% else %}
+        <p>No students enrolled in this course.</p>
+    {% endfor %}
+ </div>
+ <div class="center-btn">
+                     <button type="submit" class="button">Submit Marks</button>
+ </div>
+</form>
 
 
 

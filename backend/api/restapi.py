@@ -172,3 +172,24 @@ def get_assessment():
     db.session.add(new_assessment)
     db.session.commit()
     return {"message": "Assessment created successfully"}, 201
+
+@api.route("/assessment/get_marks", methods=["POST"])
+def get_marks():
+    assessment_id = request.form.get("assessment_id", type=int)
+    student_ids = request.form.getlist("student_id")
+    marks_list = request.form.getlist("marks")
+    
+    if not assessment_id or not student_ids or not marks_list:
+        return "Missing data", 400
+    
+    # Zip them together to pair each student with their mark
+    for student_id, marks in zip(student_ids, marks_list):
+        new_mark = Studentmark(
+            student_id=int(student_id),
+            assessment_id=assessment_id,
+            obtained_marks=float(marks) if marks else 0
+        )
+        db.session.add(new_mark)
+    
+    db.session.commit()
+    return {"message": "Marks assigned successfully"}, 201

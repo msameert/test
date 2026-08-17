@@ -183,9 +183,28 @@ def assessment():
 def assessment_details(assessment_id):
 
     assessment = Assessment.query.get(assessment_id)
+    
+    if not assessment:
+        return "Assessment not found", 404
+    
+    # Get the faculty course to determine semester
+    faculty_course = FacultyCourse.query.get(assessment.course_id)
+    
+    # Get all students enrolled in this course and semester
+    enrolled_students = StudentCourse.query.filter_by(
+        course_id=assessment.course_id,
+        semester_id=faculty_course.semester_id if faculty_course else None
+    ).all()
+    
+    # Get marks for this assessment
+    marks_dict = {}
     marks = Studentmark.query.filter_by(assessment_id=assessment_id).all()
+    for mark in marks:
+        marks_dict[mark.student_id] = mark.obtained_marks
 
-    return render_template("assessmentdetails.html", assessment=assessment, marks=marks)
+    faculty = Faculty.query.filter_by(user_id=session["user_id"]).first()
+
+    return render_template("assessmentdetails.html", assessment=assessment, enrolled_students=enrolled_students, marks_dict=marks_dict, name=faculty.name)
 
 
 
