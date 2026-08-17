@@ -126,7 +126,9 @@ def student_dashboard():
 
     department = Department.query.filter_by(id=student.department_id).first()
 
-    return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses, department=department)
+    course = Course.query.all()
+
+    return render_template("studentdashboard.html", firstname=student.firstname, student_courses=student_courses, department=department, course=course)
 
 @app.route("/faculty/dashboard")
 def faculty_dashboard():
@@ -206,7 +208,12 @@ def assessment_details(assessment_id):
 
     return render_template("assessmentdetails.html", assessment=assessment, enrolled_students=enrolled_students, marks_dict=marks_dict, name=faculty.name)
 
+@app.route("/result/<int:course_id>")
+def student_result(course_id):
 
+    course = Course.query.get(course_id)
+
+    return render_template("studentresult.html", course=course)
 
 
 if __name__ == "__main__" :

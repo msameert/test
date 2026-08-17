@@ -12,10 +12,12 @@
         <h2>My Courses</h2>
 
         {% for sc in student_courses %}
-        <div class="course-card">
-            <h3>{{ sc.course.course_name }}</h3>
-            <p>Class: {{ sc.semester.name }}</p>
-        </div>
+        <a href="{{ url_for('student_result', course_id=sc.course.id) }}" class="course-card-link">
+            <div class="course-card">
+                <h3>{{ sc.course.course_name }}</h3>
+                <p>Class: {{ sc.semester.name }}</p>
+            </div>
+        </a>
         {% endfor %}
        
 
