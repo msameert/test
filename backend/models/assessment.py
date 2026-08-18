@@ -5,7 +5,7 @@ class Assessment (db.Model) :
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    marks = db.Column(db.Float, nullable=False)
+    total_marks = db.Column(db.Float, nullable=False)
 
     course_id = db.Column(db.Integer, db.ForeignKey("courses.id"), nullable=False)
     faculty_id = db.Column(db.Integer, db.ForeignKey("faculty.id"), nullable=False)
