@@ -151,7 +151,7 @@ def assign_student_courses():
 @api.route("/assessment/get_assessment", methods=["POST"])
 def get_assessment():
     assessment_title = request.form.get("title")
-    assessment_marks = request.form.get("marks")
+    total_marks = request.form.get("total_marks")
     course_id = request.form.get("course_id", type=int)
 
     faculty = Faculty.query.filter_by(user_id=session.get("user_id")).first()
@@ -160,12 +160,12 @@ def get_assessment():
 
     faculty_id = faculty.id
 
-    if not assessment_title or assessment_marks is None or course_id is None:
-        return "Please enter title and marks of assessment.", 400
+    if not assessment_title or total_marks is None or course_id is None:
+        return "Please enter title and total marks of assessment.", 400
 
     new_assessment = Assessment(
         title=assessment_title,
-        marks=float(assessment_marks),
+        total_marks=float(total_marks),
         course_id=course_id,
         faculty_id=faculty_id
     )
