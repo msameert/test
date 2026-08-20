@@ -5,7 +5,55 @@
 
 
 
-<p>hello</p>
+
+<section class="results-page">
+    <div class="results-heading">
+        <div>
+            <p class="eyebrow">Academic performance</p>
+            <h1>Assessment results</h1>
+            <p class="results-summary">Review your marks across every assessment for this course.</p>
+        </div>
+        <div class="results-count" aria-label="Number of assessments">
+            <strong>{{ assessments|length }}</strong>
+            <span>assessment{{ 's' if assessments|length != 1 else '' }}</span>
+        </div>
+    </div>
+
+    {% if assessments %}
+    <div class="results-table-wrap">
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th scope="col">Assessment</th>
+                    <th scope="col">Total marks</th>
+                    <th scope="col">Marks obtained</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assessment in assessments %}
+                {% set mark = marks_by_assessment.get(assessment.id) %}
+                <tr>
+                    <th scope="row">{{ assessment.title }}</th>
+                    <td>{{ assessment.total_marks|round(2) }}</td>
+                    <td>
+                        {% if mark and mark.obtained_marks is not none %}
+                            <span class="mark-value">{{ mark.obtained_marks|round(2) }}</span>
+                        {% else %}
+                            <span class="mark-pending">Not released</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="results-empty">
+        <h2>No assessments yet</h2>
+        <p>Your assessment results will appear here once assessments are added.</p>
+    </div>
+    {% endif %}
+</section>
 
 
 

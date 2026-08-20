@@ -193,3 +193,4 @@ def get_marks():
     
     db.session.commit()
     return {"message": "Marks assigned successfully"}, 201
+

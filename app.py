@@ -211,9 +211,24 @@ def assessment_details(assessment_id):
 @app.route("/result/<int:course_id>")
 def student_result(course_id):
 
-    course = Course.query.get(course_id)
+    student = Student.query.filter_by(user_id=session["user_id"]).first()
 
-    return render_template("studentresult.html", course=course)
+    course = Course.query.filter_by(id=course_id).first()
+    if not course:
+        return "Course not found", 404
+
+    assessments = Assessment.query.filter_by(course_id=course_id).order_by(Assessment.id).all()
+    marks_by_assessment = {
+        mark.assessment_id: mark
+        for mark in Studentmark.query.filter_by(student_id=student.id).all()
+    }
+
+
+    return render_template(
+        "studentresult.html",
+        assessments=assessments,
+        marks_by_assessment=marks_by_assessment
+    )
 
 
 if __name__ == "__main__" :
