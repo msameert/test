@@ -220,15 +220,12 @@ def student_result(course_id):
     assessments = Assessment.query.filter_by(course_id=course_id).order_by(Assessment.id).all()
     marks_by_assessment = {
         mark.assessment_id: mark
-        for mark in Studentmark.query.filter_by(student_id=student.id).all()
+        for mark in Studentmark.query.filter_by(student_id=student.id).all()    # this creates dictionary
     }
 
 
     return render_template(
-        "studentresult.html",
-        assessments=assessments,
-        marks_by_assessment=marks_by_assessment
-    )
+        "studentresult.html", assessments=assessments, marks_by_assessment=marks_by_assessment)
 
 
 if __name__ == "__main__" :
