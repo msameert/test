@@ -710,3 +710,18 @@ footer {
     transform: translateY(-1px);
 }
 
+.alert {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.alert.error {
+    background: #ffe5e5;
+    color: #c62828;
+}
+
+.alert.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
