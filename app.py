@@ -60,6 +60,10 @@ def login() :
       if not user :
         flash("User not registered","error")
         return redirect(url_for("home"))
+      
+      if not user.check_password(password):
+          flash("Incorrect Password","error")
+          return redirect(url_for("home"))
 
       if user.role == "admin":
             return redirect(url_for("admin_dashboard"))
