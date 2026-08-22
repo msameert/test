@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="error-page" aria-labelledby="error-title">
+	<div class="error-code" aria-hidden="true">404</div>
+	<div class="error-copy">
+		<p class="eyebrow">Page not found</p>
+		<h1 id="error-title">That page has moved on.</h1>
+		<p>We could not find the page you requested. Check the address or return to the LMS home page.</p>
+		<a href="{{ url_for('home') }}" class="error-action">Return to login page</a>
+	</div>
+</section>
+{% endblock %}

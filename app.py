@@ -55,14 +55,16 @@ def login() :
         session["username"] = user.username
         session["role"] = user.role
 
-    
-      
       if not user :
         flash("User not registered","error")
         return redirect(url_for("home"))
       
       if not user.check_password(password):
           flash("Incorrect Password","error")
+          return redirect(url_for("home"))
+
+      if not username or not password:
+          flash("Username and Password are required","error")
           return redirect(url_for("home"))
 
       if user.role == "admin":
@@ -242,6 +244,17 @@ def student_result(course_id):
     return render_template(
         "studentresult.html", assessments=assessments, marks_by_assessment=marks_by_assessment)
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html"),404
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template("403.html"),403
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template("500.html"),500
 
 if __name__ == "__main__" :
   app.run(debug=True)

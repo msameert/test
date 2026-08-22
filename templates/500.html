@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="error-page" aria-labelledby="error-title">
+	<div class="error-code" aria-hidden="true">500</div>
+	<div class="error-copy">
+		<p class="eyebrow">Temporary problem</p>
+		<h1 id="error-title">Something went wrong.</h1>
+		<p>The LMS could not complete your request. Please return home and try again in a moment.</p>
+		<a href="{{ url_for('home') }}" class="error-action">Return home</a>
+	</div>
+</section>
+{% endblock %}
