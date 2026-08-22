@@ -1,4 +1,4 @@
-from flask import Flask,render_template, redirect, session, url_for, request
+from flask import Flask,render_template, redirect, session, url_for, request, flash
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import os
@@ -38,9 +38,13 @@ def home () :
   return render_template("signin.html")
   
 # Login
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET","POST"])
 def login() :
              # Collect info from DB 
+    
+      if request.method == "GET":
+             return render_template("signin.html")
+      
       username = request.form['username']
       password = request.form['password']
       user = User.query.filter_by(username=username).first()
@@ -51,13 +55,19 @@ def login() :
         session["username"] = user.username
         session["role"] = user.role
 
-        if user.role == "admin":
+    
+      
+      if not user :
+        flash("User not registered","error")
+        return redirect(url_for("home"))
+
+      if user.role == "admin":
             return redirect(url_for("admin_dashboard"))
 
-        elif user.role == "student":
+      elif user.role == "student":
             return redirect(url_for("student_dashboard"))
         
-        elif user.role == "faculty":
+      elif user.role == "faculty":
             return redirect(url_for("faculty_dashboard"))
       
 
