@@ -1,4 +1,4 @@
-from marshmallow import schema, fields, validate
+from marshmallow import Schema, fields, validate
 
 class DepartmentSchema(schema):
     name = fields.Str(
