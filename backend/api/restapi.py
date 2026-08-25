@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, redirect, url_for, session
+from marshmallow import ValidationError
 from datetime import datetime
 from db import db
 from backend.models.user import User
@@ -11,6 +12,7 @@ from backend.models.semester import Semester
 from backend.models.studentcourses import StudentCourse
 from backend.models.assessment import Assessment
 from backend.models.studentmarks import Studentmark
+from backend.schemas.department_schema import DepartmentSchema
 
 
 api = Blueprint('api',__name__)
@@ -69,10 +71,16 @@ def create_faculty():
 
 @api.route('/admin/create_department', methods=["POST"])
 def create_department() :
-  name = request.form["name"]
-  code = request.form["code"]
+  schema = DepartmentSchema()
 
-  new_department = Department(name=name, code=code)
+  try:
+     data = schema.load(request.form)
+  except ValidationError as error:
+     return jsonify({"errors": error.message}), 400
+  
+
+  new_department = Department(name=data["name"],code=data["code"])
+  
   db.session.add(new_department)
   db.session.commit()
   return {"message": "Department created succesfuly"}, 201

@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, validate
 
-class DepartmentSchema(schema):
+class DepartmentSchema(Schema):
     name = fields.Str(
         required=True,
         validate=validate.Length(min=2,max=50)

@@ -256,5 +256,9 @@ def forbidden(e):
 def server_error(e):
     return render_template("500.html"),500
 
+@app.errorhandler(400)
+def bad_request(e):
+    return render_template("400.html"),400
+
 if __name__ == "__main__" :
   app.run(debug=True)
