@@ -76,11 +76,11 @@ def create_department() :
   try:
      data = schema.load(request.form)
   except ValidationError as error:
-     return jsonify({"errors": error.message}), 400
+     return jsonify({"errors": error.messages}), 400
   
 
   new_department = Department(name=data["name"],code=data["code"])
-  
+
   db.session.add(new_department)
   db.session.commit()
   return {"message": "Department created succesfuly"}, 201
