@@ -61,6 +61,9 @@ Flask Application
   │
   ▼
 Supabase PostgreSQL
+  │
+  ▼
+Vercel Deployment
 ```
 
 ---
