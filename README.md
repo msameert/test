@@ -41,6 +41,11 @@ The project includes database migrations, role-based authentication, separate da
                    ┌─────────────────────┐
                    │ Supabase PostgreSQL  │
                    └─────────────────────┘
+                              │
+                              ▼
+                   ┌─────────────────────┐
+                   │  Vercel Deployment  │
+                   └─────────────────────┘
 ```
 
 For local/containerized execution:
