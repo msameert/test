@@ -24,7 +24,10 @@ def create_students():
   schema = UserSchema()
 
   try:
-     user_data = schema.load(request.form)
+     user_data = schema.load({
+        "username": request.form.get("username"),
+        "password": request.form.get("password")
+     })
   except ValidationError as error:
      return jsonify({"errors": error.messages}), 400
 
