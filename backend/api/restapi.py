@@ -53,18 +53,22 @@ def create_students():
 @api.route('/admin/create_faculty', methods=['POST'])
 
 def create_faculty():
-  username = request.form["username"]
-  password = request.form["password"]
+  schema = UserSchema()
+  
+  try:
+       user_data = schema.load(request.form)
+  except ValidationError as error:
+       return jsonify({"errors": error.messages}), 400
 
   name = request.form["name"]
   email = request.form["email"]
   department = request.form["department"]
   designation = request.form["designation"]
   
-  new_user = User(username=username, role="faculty")
-  new_user.set_password(password)
+  new_user = User(username=user_data["username"], role="faculty")
+  new_user.set_password(user_data["password"])
 
-  db.session.add(new_user)
+  db.session.add(new_user)  
   db.session.flush()
 
   new_faculty = Faculty(name=name,email=email,
