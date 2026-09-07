@@ -13,6 +13,7 @@ from backend.models.studentcourses import StudentCourse
 from backend.models.assessment import Assessment
 from backend.models.studentmarks import Studentmark
 from backend.schemas.department_schema import DepartmentSchema
+from backend.schemas.user_schema import UserSchema
 
 
 api = Blueprint('api',__name__)
@@ -20,8 +21,12 @@ api = Blueprint('api',__name__)
 @api.route('/admin/create_users', methods=['POST']) 
 
 def create_students():
-  username = request.form["username"]
-  password = request.form["password"]
+  schema = UserSchema()
+
+  try:
+     user_data = schema.load(request.form)
+  except ValidationError as error:
+     return jsonify({"errors": error.messages}), 400
 
   firstname = request.form["firstname"]
   lastname = request.form["lastname"]
@@ -30,8 +35,9 @@ def create_students():
   cnic = request.form["cnic"]
   gender = request.form["gender"]
   department_id = request.form["department_id"]
-  new_user = User(username=username, role="student")
-  new_user.set_password(password)
+
+  new_user = User(username=user_data["username"], role="student")
+  new_user.set_password(user_data["password"])
   
   db.session.add(new_user)
   db.session.flush()
