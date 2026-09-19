@@ -14,6 +14,7 @@ from backend.models.assessment import Assessment
 from backend.models.studentmarks import Studentmark
 from backend.schemas.department_schema import DepartmentSchema
 from backend.schemas.user_schema import UserSchema
+from backend.schemas.login_schema import LoginSchema
 
 
 api = Blueprint('api',__name__)
