@@ -1,11 +1,13 @@
 from flask import Flask,render_template, redirect, session, url_for, request, flash
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from marshmallow import ValidationError
 import os
 
 from flask_sqlalchemy import SQLAlchemy
 from db import db
 from backend.models.user import User
+from backend.schemas.login_schema import LoginSchema
 from backend.models.student import Student
 from backend.models.faculty import Faculty
 from backend.models.departments import Department
@@ -40,41 +42,40 @@ def home () :
 # Login
 @app.route("/login", methods=["GET","POST"])
 def login() :
-             # Collect info from DB 
-    
-      if request.method == "GET":
-             return render_template("signin.html")
-      
-      username = request.form['username']
-      password = request.form['password']
-      user = User.query.filter_by(username=username).first()
+    if request.method == "GET":
+        return render_template("signin.html")
 
-      if user and user.check_password(password):
+    schema = LoginSchema()
+    try:
+        data = schema.load(request.form)
+    except ValidationError as error:
+        flash("Invalid username or password.", "error")
+        return render_template("signin.html", errors=error.messages)
 
-        session["user_id"] = user.id
-        session["username"] = user.username
-        session["role"] = user.role
+    username = data["username"]
+    password = data["password"]
+    user = User.query.filter_by(username=username).first()
 
-      if not user :
-        flash("User not registered","error")
+    if not user:
+        flash("User not registered", "error")
         return redirect(url_for("home"))
-      
-      if not user.check_password(password):
-          flash("Incorrect Password","error")
-          return redirect(url_for("home"))
 
-      if not username or not password:
-          flash("Username and Password are required","error")
-          return redirect(url_for("home"))
+    if not user.check_password(password):
+        flash("Incorrect Password", "error")
+        return redirect(url_for("home"))
 
-      if user.role == "admin":
-            return redirect(url_for("admin_dashboard"))
+    session["user_id"] = user.id
+    session["username"] = user.username
+    session["role"] = user.role
 
-      elif user.role == "student":
-            return redirect(url_for("student_dashboard"))
-        
-      elif user.role == "faculty":
-            return redirect(url_for("faculty_dashboard"))
+    if user.role == "admin":
+        return redirect(url_for("admin_dashboard"))
+
+    elif user.role == "student":
+        return redirect(url_for("student_dashboard"))
+
+    elif user.role == "faculty":
+        return redirect(url_for("faculty_dashboard"))
       
 
 # Register
