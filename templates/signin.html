@@ -16,40 +16,55 @@
 {% endwith %}
 
 <div class="login-container">
-    <div class="login-card">
-        <h1>Welcome to LMS</h1>
-        <h2>Enter your Username & Password to login</h2>
-        <form id="auth-form" action="{{url_for('login')}}" method="post">
-            <input
-                type="text"
-                name="username"
-                placeholder="username"
-                class="input-field"
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="password"
-                class="input-field"
-            />
-            <input type="submit" value="Login" class="btn btn-login" onclick="setActionForm('login')" />
-        </form>
+    <div class="auth-shell">
+        <div class="auth-panel auth-panel--brand">
+            <div class="brand-mark">AIS</div>
+            <p class="eyebrow">Academia Insight System</p>
+            <h1>Welcome back</h1>
+            <p class="panel-copy">Access your academic dashboard, course information, and student records from one secure place.</p>
+            <ul class="feature-list">
+                <li>Course overview</li>
+                <li>Performance tracking</li>
+                <li>Secure student access</li>
+            </ul>
+        </div>
+
+        <div class="auth-panel auth-panel--form">
+            <div class="auth-header">
+                <span class="auth-badge">Secure Sign In</span>
+                <h2>Login to your account</h2>
+            </div>
+
+            <form id="auth-form" action="{{url_for('login')}}" method="post" class="auth-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        class="input-field"
+                        autocomplete="username"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        class="input-field"
+                        autocomplete="current-password"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </div>
     </div>
 </div>
-
-<script>
-    function setActionForm(action){
-        let form = document.getElementById("auth-form");
-        if (action === 'login') {
-            form.action = "{{url_for('login')}}";
-            form.method = "post";
-            form.submit();
-        } else if (action === 'register') {
-            form.action = "{{url_for('register')}}";
-            form.method = "post";
-            form.submit();
-        }
-    }
-</script>
-
 {%endblock%}
