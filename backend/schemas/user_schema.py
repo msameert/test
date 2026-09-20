@@ -7,7 +7,7 @@ class UserSchema(Schema):
         validate=[
             validate.Length(min=4, max=30),
             validate.Regexp(
-                r"^[A-Za-z0-9_.-]+$",
+                r"^[A-Za-z0-9_.-@]+$",
                 error="Username contains invalid characters."
             )
         ]
@@ -16,5 +16,5 @@ class UserSchema(Schema):
     password = fields.Str(
         required=True,
         load_only=True,
-        validate=validate.Length(min=8, max=128)
+        validate=validate.Length(min=3, max=128)
     )
