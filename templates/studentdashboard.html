@@ -1,27 +1,49 @@
 {% extends "base.html" %}
 
-{%block body%}
+{% block body %}
+<section class="student-dashboard">
+    <div class="panel student-hero">
+        <div class="hero-copy">
+            <span class="eyebrow">Student Portal</span>
+            <h1>Welcome, {{ firstname }}!</h1>
+            <p>Your student dashboard is ready. Review your courses and academic details in one place.</p>
+        </div>
 
-<section class="panel">
-    <div class="panel-header">
-        <h1>Welcome, {{ firstname }}!</h1>
-        <p>Your student dashboard is ready. Review your courses and academic details in one place.</p>
-        <p>Department : {{ department.name }}</p>
+        <div class="meta-card">
+            <span class="meta-label">Department</span>
+            <strong>{{ department.name }}</strong>
+        </div>
     </div>
-    <div class="panel-header">
-        <h2>My Courses</h2>
 
-        {% for sc in student_courses %}
-        <a href="{{ url_for('student_result', course_id=sc.course.id) }}" class="course-card-link">
-            <div class="course-card">
-                <h3>{{ sc.course.course_name }}</h3>
-                <p>Class: {{ sc.semester.name }}</p>
+    <div class="panel course-panel">
+        <div class="panel-header panel-header-inline">
+            <div>
+                <span class="eyebrow">Academic overview</span>
+                <h2>My Courses</h2>
             </div>
-        </a>
-        {% endfor %}
-       
+            <span class="course-count">{{ student_courses|length }} active</span>
+        </div>
 
+        {% if student_courses %}
+        <div class="course-grid">
+            {% for sc in student_courses %}
+            <a href="{{ url_for('student_result', course_id=sc.course.id) }}" class="course-card-link">
+                <article class="dashboard-course-card">
+                    <div class="course-card-copy">
+                        <span class="course-tag">Course</span>
+                        <h3>{{ sc.course.course_name }}</h3>
+                        <p>Class: {{ sc.semester.name }}</p>
+                    </div>
+                    <span class="course-arrow" aria-hidden="true">→</span>
+                </article>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>No courses are currently assigned to your profile.</p>
+        </div>
+        {% endif %}
     </div>
 </section>
-
-{%endblock%}
+{% endblock %}
