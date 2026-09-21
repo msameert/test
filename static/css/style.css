@@ -287,21 +287,6 @@ textarea {
     gap: 0.9rem;
 }
 
-.brand-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.9rem;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
-    font-size: 0.83rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-}
-
 .brand-copy {
     display: flex;
     flex-direction: column;

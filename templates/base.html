@@ -12,10 +12,19 @@
     <header class="site-header">
         <div class="header-nav">
             <div class="brand" aria-label="LMS home">
-                <div class="brand-mark">AIS</div>
                 <div class="brand-copy">
                     <span class="app-title">Academia Insight System</span>
-                    <small>Student & Faculty Portal</small>
+                    <small>
+                        {% if session.get('role') == 'student' %}
+                            Student Portal
+                        {% elif session.get('role') == 'faculty' %}
+                            Faculty Portal
+                        {% elif session.get('role') == 'admin' %}
+                            Admin Portal
+                        {% else %}
+                            Portal
+                        {% endif %}
+                    </small>
                 </div>
             </div>
             <div class="nav-right">
