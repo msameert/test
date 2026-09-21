@@ -9,13 +9,17 @@
 </head>
 <body>
     {% block header %}
-    <header>
+    <header class="site-header">
         <div class="header-nav">
-            <div class="brand">
-                <span class="app-title">LMS</span>
+            <div class="brand" aria-label="LMS home">
+                <div class="brand-mark">LMS</div>
+                <div class="brand-copy">
+                    <span class="app-title">Learning Management System</span>
+                    <small>Student & Faculty Portal</small>
+                </div>
             </div>
             <div class="nav-right">
-                <span class="username">Logged in as {{ session.get('username', 'Guest') }}</span>
+                <span class="username-pill">Logged in as {{ session.get('username', 'Guest') }}</span>
                 <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
             </div>
         </div>
@@ -30,8 +34,11 @@
     </main>
 
     {% block footer %}
-    <footer>
-        © LMS 2026
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-brand">LMS</span>
+            <span>© 2026 Learning Management System</span>
+        </div>
     </footer>
     {% endblock %}
 </body>
