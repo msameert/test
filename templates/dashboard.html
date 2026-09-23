@@ -2,43 +2,58 @@
 
 {%block body%}
 
-<section class="panel">
-    <div class="panel-header">
-        <h1>Admin Dashboard</h1>
+<section class="panel admin-panel">
+    <div class="panel-header panel-header--compact">
+        <div>
+            <p class="eyebrow">Operations Center</p>
+            <h1>Admin Dashboard</h1>
+        </div>
         <p>Welcome to the LMS admin panel. Create new student, faculty, department, semester and courses from this centralized dashboard.</p>
     </div>
 
-    <div class="form-grid">
-        <div class="form-card">
-            <h2>Create Student</h2>
-            <form action="{{ url_for('api.create_students') }}" method="post">
+    <div class="admin-dashboard-grid">
+        <div class="form-card admin-card">
+            <div class="card-head">
+                <h2>Create Student</h2>
+                <span class="card-tag">Profiles</span>
+            </div>
+            <form action="{{ url_for('api.create_students') }}" method="post" class="dashboard-form">
                 <div class="form-grid-two">
                     <div class="form-group">
-                        <input name="username" placeholder="username">
+                        <label for="student-username">Username</label>
+                        <input id="student-username" name="username" placeholder="username">
                     </div>
                     <div class="form-group">
-                        <input name="password" placeholder="password">
+                        <label for="student-password">Password</label>
+                        <input id="student-password" name="password" type="password" placeholder="password">
                     </div>
                     <div class="form-group">
-                        <input name="firstname" placeholder="firstname">
+                        <label for="student-firstname">First Name</label>
+                        <input id="student-firstname" name="firstname" placeholder="firstname">
                     </div>
                     <div class="form-group">
-                        <input name="lastname" placeholder="lastname">
+                        <label for="student-lastname">Last Name</label>
+                        <input id="student-lastname" name="lastname" placeholder="lastname">
                     </div>
                     <div class="form-group">
-                        <input name="email" placeholder="email">
+                        <label for="student-email">Email</label>
+                        <input id="student-email" name="email" placeholder="email">
                     </div>
                     <div class="form-group">
-                        <input name="enroll_year" placeholder="year">
+                        <label for="student-year">Enrollment Year</label>
+                        <input id="student-year" name="enroll_year" placeholder="year">
                     </div>
                     <div class="form-group">
-                        <input name="cnic" placeholder="cnic">
+                        <label for="student-cnic">CNIC</label>
+                        <input id="student-cnic" name="cnic" placeholder="cnic">
                     </div>
                     <div class="form-group">
-                        <input name="gender" placeholder="gender">
+                        <label for="student-gender">Gender</label>
+                        <input id="student-gender" name="gender" placeholder="gender">
                     </div>
-                    <div class="form-group">
-                        <input name="department_id" placeholder="department">
+                    <div class="form-group form-group--full">
+                        <label for="student-department">Department</label>
+                        <input id="student-department" name="department_id" placeholder="department">
                     </div>
                 </div>
                 <div class="center-btn">
@@ -47,27 +62,36 @@
             </form>
         </div>
 
-        <div class="form-card">
-            <h2>Create Faculty</h2>
-            <form action="{{ url_for('api.create_faculty') }}" method="post">
+        <div class="form-card admin-card">
+            <div class="card-head">
+                <h2>Create Faculty</h2>
+                <span class="card-tag">Staff</span>
+            </div>
+            <form action="{{ url_for('api.create_faculty') }}" method="post" class="dashboard-form">
                 <div class="form-grid-two">
                     <div class="form-group">
-                        <input name="username" placeholder="username">
+                        <label for="faculty-username">Username</label>
+                        <input id="faculty-username" name="username" placeholder="username">
                     </div>
                     <div class="form-group">
-                        <input name="password" placeholder="password">
+                        <label for="faculty-password">Password</label>
+                        <input id="faculty-password" name="password" type="password" placeholder="password">
                     </div>
                     <div class="form-group">
-                        <input name="name" placeholder="name">
+                        <label for="faculty-name">Full Name</label>
+                        <input id="faculty-name" name="name" placeholder="name">
                     </div>
                     <div class="form-group">
-                        <input name="email" placeholder="email">
+                        <label for="faculty-email">Email</label>
+                        <input id="faculty-email" name="email" placeholder="email">
                     </div>
                     <div class="form-group">
-                        <input name="department" placeholder="department">
+                        <label for="faculty-department">Department</label>
+                        <input id="faculty-department" name="department" placeholder="department">
                     </div>
                     <div class="form-group">
-                        <input name="designation" placeholder="designation">
+                        <label for="faculty-designation">Designation</label>
+                        <input id="faculty-designation" name="designation" placeholder="designation">
                     </div>
                 </div>
                 <div class="center-btn">
@@ -76,15 +100,20 @@
             </form>
         </div>
 
-         <div class="form-card">
-            <h2>Create Department</h2>
-            <form action="{{ url_for('api.create_department') }}" method="post">
+         <div class="form-card admin-card">
+            <div class="card-head">
+                <h2>Create Department</h2>
+                <span class="card-tag">Structure</span>
+            </div>
+            <form action="{{ url_for('api.create_department') }}" method="post" class="dashboard-form">
                 <div class="form-grid-two">
-                    <div class="form-group">
-                        <input name="name" placeholder="Department Name">
+                    <div class="form-group form-group--full">
+                        <label for="department-name">Department Name</label>
+                        <input id="department-name" name="name" placeholder="Department Name">
                     </div>
-                    <div class="form-group">
-                        <input name="code" placeholder="Department Code">
+                    <div class="form-group form-group--full">
+                        <label for="department-code">Department Code</label>
+                        <input id="department-code" name="code" placeholder="Department Code">
                     </div>
                 </div>
                 <div class="center-btn">
@@ -92,21 +121,28 @@
                 </div>
             </form>
         </div>
-        <div class="form-card">
-            <h2>Create Courses</h2>
-            <form action="{{ url_for('api.create_course') }}" method="post">
+        <div class="form-card admin-card">
+            <div class="card-head">
+                <h2>Create Courses</h2>
+                <span class="card-tag">Catalog</span>
+            </div>
+            <form action="{{ url_for('api.create_course') }}" method="post" class="dashboard-form">
                 <div class="form-grid-two">
                     <div class="form-group">
-                        <input name="course_code" placeholder="Course Code">
+                        <label for="course-code">Course Code</label>
+                        <input id="course-code" name="course_code" placeholder="Course Code">
                     </div>
                     <div class="form-group">
-                        <input name="course_name" placeholder="Course name">
+                        <label for="course-name">Course Name</label>
+                        <input id="course-name" name="course_name" placeholder="Course name">
                     </div>
                     <div class="form-group">
-                        <input name="credit_hours" placeholder="Credit Hours">
+                        <label for="course-credits">Credit Hours</label>
+                        <input id="course-credits" name="credit_hours" placeholder="Credit Hours">
                     </div>
                     <div class="form-group">
-                        <input name="department_id" placeholder="Department id">
+                        <label for="course-dept">Department ID</label>
+                        <input id="course-dept" name="department_id" placeholder="Department id">
                     </div>
                 </div>
                 <div class="center-btn">
@@ -115,24 +151,32 @@
             </form>
         </div>
 
-        <div class="form-card">
-             <h2>Create Semesters</h2>
-               <form action="{{ url_for('api.create_semester') }}" method="post">
+        <div class="form-card admin-card">
+             <div class="card-head">
+                <h2>Create Semester</h2>
+                <span class="card-tag">Schedule</span>
+             </div>
+               <form action="{{ url_for('api.create_semester') }}" method="post" class="dashboard-form">
                    <div class="form-grid-two">
                        <div class="form-group">
-                         <input name="name" placeholder="Semester name">
+                         <label for="semester-name">Semester Name</label>
+                         <input id="semester-name" name="name" placeholder="Semester name">
                        </div>
                        <div class="form-group">
-                         <input name="code" placeholder="Semester code">
+                         <label for="semester-code">Semester Code</label>
+                         <input id="semester-code" name="code" placeholder="Semester code">
                        </div>
                        <div class="form-group">
-                         <input name="year" placeholder="Semester year">
+                         <label for="semester-year">Year</label>
+                         <input id="semester-year" name="year" placeholder="Semester year">
                        </div>
                        <div class="form-group">
-                         <input name="number" placeholder="Semester number">
+                         <label for="semester-number">Semester Number</label>
+                         <input id="semester-number" name="number" placeholder="Semester number">
                        </div>
-                       <div class="form-group">
-                         <input name="type" placeholder="Semester type">
+                       <div class="form-group form-group--full">
+                         <label for="semester-type">Semester Type</label>
+                         <input id="semester-type" name="type" placeholder="Semester type">
                        </div>
                     </div>
                   <div class="center-btn">
@@ -141,12 +185,14 @@
              </form> 
          </div> 
 
-        <div class="form-card">
-          <h2>Assign Courses to Faculty</h2>
+        <div class="form-card admin-card assignment-card">
+          <div class="card-head">
+            <h2>Assign Courses to Faculty</h2>
+            <span class="card-tag">Faculty</span>
+          </div>
 
-            <form action="{{ url_for('api.assign_faculty_courses') }}" method="POST">
+            <form action="{{ url_for('api.assign_faculty_courses') }}" method="POST" class="assignment-form">
 
-             <!-- Faculty Selection -->
              <div class="form-group">
                 <label>Select Faculty</label>
                 <div class="faculty-selection">
@@ -159,31 +205,29 @@
                 </div>
              </div>
 
-              <!-- Semester Selection -->
              <div class="form-group">
                 <label>Select Semester</label>
                 <div class="semester-selection">
                    {% for semester in semesters %}
                    <div class="semester-card">
                        <input type="radio" id="faculty_semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
-                       <label for="semester-{{ semester.id }}">{{ semester.name }}</label>
+                       <label for="faculty_semester-{{ semester.id }}">{{ semester.name }}</label>
                    </div>
                    {% endfor %}
                 </div>
              </div>
 
-         <!-- Courses Multi Select -->
-         <div class="form-group">
-            <label>Select Courses</label>
-            <div class="course-selection">
-                {% for course in courses %}
-                <div class="course-card">
-                    <input type="checkbox" id="faculty_course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
-                    <label for="course-{{ course.id }}">{{ course.course_name }}</label>
+            <div class="form-group">
+                <label>Select Courses</label>
+                <div class="course-selection">
+                    {% for course in courses %}
+                    <div class="course-card">
+                        <input type="checkbox" id="faculty_course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
+                        <label for="faculty_course-{{ course.id }}">{{ course.course_name }}</label>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-         </div>
 
               <div class="center-btn">
                 <button type="submit" class="button">
@@ -194,12 +238,14 @@
              </form>
            </div>
 
-           <div class="form-card">
-             <h2>Assign Courses to Students</h2>
+           <div class="form-card admin-card assignment-card">
+             <div class="card-head">
+                <h2>Assign Courses to Students</h2>
+                <span class="card-tag">Students</span>
+             </div>
 
-            <form action="{{ url_for('api.assign_student_courses') }}" method="POST">
+            <form action="{{ url_for('api.assign_student_courses') }}" method="POST" class="assignment-form">
 
-             <!-- Student Selection -->
              <div class="form-group">
                 <label>Select Student</label>
                 <div class="faculty-selection">
@@ -212,31 +258,29 @@
                 </div>
              </div>
 
-              <!-- Semester Selection -->
              <div class="form-group">
                 <label>Select Semester</label>
                 <div class="semester-selection">
                    {% for semester in semesters %}
                    <div class="semester-card">
-                       <input type="radio" id="semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
-                       <label for="semester-{{ semester.id }}">{{ semester.name }}</label>
+                       <input type="radio" id="student_semester-{{ semester.id }}" name="semester_id" value="{{ semester.id }}" required>
+                       <label for="student_semester-{{ semester.id }}">{{ semester.name }}</label>
                    </div>
                    {% endfor %}
                 </div>
              </div>
 
-         <!-- Courses Multi Select -->
-         <div class="form-group">
-            <label>Select Courses</label>
-            <div class="course-selection">
-                {% for course in courses %}
-                <div class="course-card">
-                    <input type="checkbox" id="course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
-                    <label for="course-{{ course.id }}">{{ course.course_name }}</label>
+            <div class="form-group">
+                <label>Select Courses</label>
+                <div class="course-selection">
+                    {% for course in courses %}
+                    <div class="course-card">
+                        <input type="checkbox" id="student_course-{{ course.id }}" name="course_ids" value="{{ course.id }}">
+                        <label for="student_course-{{ course.id }}">{{ course.course_name }}</label>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-         </div>
 
               <div class="center-btn">
                 <button type="submit" class="button">
