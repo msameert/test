@@ -126,14 +126,16 @@ def admin_dashboard():
     if session.get("role") != "admin":
         return "Unauthorized", 403
 
-    faculties = Faculty.query.all()
+    
     courses = Course.query.all()
     semesters = Semester.query.all()
-    students = Student.query.all()
+    
 
     users = User.query.all()
+    totalstudents = User.query.filter_by(role="student").all()
+    totalfaculty = User.query.filter_by(role="faculty").all()
 
-    return render_template("dashboard.html", faculties=faculties, courses=courses, semesters=semesters, students=students, users=users)
+    return render_template("dashboard.html", courses=courses, semesters=semesters, users=users, totalstudents=totalstudents, totalfaculty=totalfaculty)
 
 @app.route("/student/dashboard")
 def student_dashboard():
