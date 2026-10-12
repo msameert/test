@@ -5,11 +5,30 @@
 <section class="panel admin-panel">
     <div class="panel-header panel-header--compact">
         <div>
+            <p class="eyebrow">Data Center</p>
+            <h1>User Data</h1>
+
+        </div>
+         <div class="assessment-list-panel">
+                        <h3>Users :</h3>
+                        <div class="User-list">
+                            
+                            <span class="User-pill">{{ users|length }}</span>
+                        </div>
+         </div>
+    </div>
+</section>
+
+<section class="panel admin-panel">
+    <div class="panel-header panel-header--compact">
+        <div>
             <p class="eyebrow">Operations Center</p>
             <h1>Admin Dashboard</h1>
         </div>
         <p>Welcome to the LMS admin panel. Create new student, faculty, department, semester and courses from this centralized dashboard.</p>
     </div>
+
+
 
     <div class="admin-dashboard-grid">
         <div class="form-card admin-card">
