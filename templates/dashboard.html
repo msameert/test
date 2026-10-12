@@ -3,26 +3,77 @@
 {%block body%}
 
 <section class="panel admin-panel">
-    <div class="panel-header panel-header--compact">
-        <div>
-            <p class="eyebrow">Data Center</p>
-            <h1>User Data</h1>
+    {% set user_count = users|length %}
+    {% set student_count = totalstudents|length %}
+    {% set faculty_count = totalfaculty|length %}
+    {% set other_count = [user_count - student_count - faculty_count, 0]|max %}
+    {% set student_share = (student_count * 100 / user_count) if user_count else 0 %}
+    {% set faculty_share = (faculty_count * 100 / user_count) if user_count else 0 %}
+    {% set other_share = (other_count * 100 / user_count) if user_count else 0 %}
 
+    <div class="user-overview">
+        <div class="user-overview-heading">
+            <div>
+                <p class="eyebrow">Data Center</p>
+                <h1>User Overview</h1>
+                <p class="user-overview-copy">A snapshot of the people using your learning platform.</p>
+            </div>
+            <span class="overview-status"><span></span> Live totals</span>
         </div>
-         <div class="assessment-list-panel">
-                        <h3>Total Users :</h3>
-                        <div class="User-list">
-                            <span class="User-pill">{{ users|length }}</span>
-                        </div>
-                        <h3>Total Students :</h3>
-                        <div class="Student-list">
-                            <span class="Student-pill">{{ totalstudents|length }}</span>
-                        </div>
-                        <h3>Total Faculty :</h3>
-                        <div class="faculty-list">
-                            <span class="faculty-pill">{{ totalfaculty|length }}</span>
-                        </div>
-         </div>
+
+        <div class="user-overview-grid">
+            <article class="user-total-card">
+                <div class="user-total-card-top">
+                    <span class="user-total-icon" aria-hidden="true">U</span>
+                    <span class="user-total-label">Total users</span>
+                </div>
+                <strong class="user-total-value">{{ user_count }}</strong>
+                <span class="user-total-caption">Registered accounts</span>
+                <div class="user-total-chart" style="--student-share: {{ student_share }}%; --faculty-share: {{ faculty_share }}%" role="img" aria-label="User composition: {{ student_count }} students, {{ faculty_count }} faculty, {{ other_count }} other users">
+                    <div class="user-total-chart-center">
+                        <strong>{{ user_count }}</strong>
+                        <span>users</span>
+                    </div>
+                </div>
+            </article>
+
+            <div class="user-breakdown">
+                <div class="user-breakdown-heading">
+                    <h2>Account breakdown</h2>
+                    <span>By role</span>
+                </div>
+
+                <div class="user-role-row">
+                    <div class="user-role-topline">
+                        <span class="user-role-name"><span class="user-role-dot user-role-dot--students"></span>Students</span>
+                        <strong>{{ student_count }} <small>{{ student_share|round|int }}%</small></strong>
+                    </div>
+                    <div class="user-role-track" role="progressbar" aria-label="Students" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ student_share|round|int }}">
+                        <span class="user-role-fill user-role-fill--students" style="width: {{ student_share }}%"></span>
+                    </div>
+                </div>
+
+                <div class="user-role-row">
+                    <div class="user-role-topline">
+                        <span class="user-role-name"><span class="user-role-dot user-role-dot--faculty"></span>Faculty</span>
+                        <strong>{{ faculty_count }} <small>{{ faculty_share|round|int }}%</small></strong>
+                    </div>
+                    <div class="user-role-track" role="progressbar" aria-label="Faculty" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ faculty_share|round|int }}">
+                        <span class="user-role-fill user-role-fill--faculty" style="width: {{ faculty_share }}%"></span>
+                    </div>
+                </div>
+
+                <div class="user-role-row">
+                    <div class="user-role-topline">
+                        <span class="user-role-name"><span class="user-role-dot user-role-dot--other"></span>Other accounts</span>
+                        <strong>{{ other_count }} <small>{{ other_share|round|int }}%</small></strong>
+                    </div>
+                    <div class="user-role-track" role="progressbar" aria-label="Other accounts" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ other_share|round|int }}">
+                        <span class="user-role-fill user-role-fill--other" style="width: {{ other_share }}%"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
